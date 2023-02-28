@@ -1,8 +1,11 @@
 import React from "react";
 import "./style.css";
 
+function redireciona(){
+  window.location.href="/users";
+}
+
 export default function Login() {
-    
   return (
     <section className="section-login">
     <div className="container">
@@ -28,7 +31,7 @@ export default function Login() {
           />
         </div>
         <div className="button-group input-btn">
-          <input type="submit" value="Entrar" />
+          <input type="submit" value="Entrar" onClick={() => redireciona()}/>
         </div>
       </form>
     </div>
