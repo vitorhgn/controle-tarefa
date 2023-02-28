@@ -1,12 +1,3 @@
-const express = require('express');
-const app = express();
+const app = require('./app')
 
-
-app.get('/', (req, res)=>{
-    res.send('Hello Word!')
-})
-
-
-app.listen(3008,  ()=>{
-    console.log("Servidor iniciado!")
-})
+app.listen(3000)
