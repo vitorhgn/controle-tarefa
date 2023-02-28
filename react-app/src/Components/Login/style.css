@@ -1,0 +1,42 @@
+.section-login { 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    background-color: #ccc;
+}
+.section-login .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px;
+}
+#form-login .form-group {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    width: 300px;
+}
+#form-login .form-group input{
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+}
+#form-login .button-group {
+    margin-bottom: 8px;
+    display: flex;
+    gap: 5px;
+}
+#form-login .input-btn input{
+    cursor: pointer;
+}
+#form-login .button-group input{
+    padding: 8px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    width: 100%
+}

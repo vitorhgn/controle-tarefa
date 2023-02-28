@@ -1,0 +1,48 @@
+.content-page .top-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.content-page .table-list {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid #dee2e6;
+}
+.content-page .table-list thead{
+    height: 50px;
+    background-color: skyblue;
+}
+.content-page .table-list tbody tr{
+    height: 40px;
+}
+.content-page .table-list tbody tr:nth-child(even){
+    background-color: #ccc;
+}
+.content{
+    padding: 50px 50px;
+}
+.search-tarefas{
+    display: flex;
+    justify-content: space-between;
+}
+.buscar-tarefas{
+    display: flex;
+    gap: 50px;
+}
+.table-list{
+    width: 100%;
+    background-color: #fff;
+    padding-top: 15px;
+}
+.table-list thead{
+    width: 100%;
+}
+.table-list th{
+    border: 1px solid gray;
+}
+.table-list tbody td{
+    text-align: center;
+    border: 1px solid gray;
+}
