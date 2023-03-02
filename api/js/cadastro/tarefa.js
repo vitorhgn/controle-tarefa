@@ -12,7 +12,7 @@ $(document).ready(function () {
     let urlEndPoint;
 
       methodEndPoint = "POST";
-      urlEndPoint = "http://localhost:3009/auth/cadastro-tarefas/save";
+      urlEndPoint = "http://localhost:3009/auth/tarefas/save";
     
     console.log(urlEndPoint, methodEndPoint);
     fetch(urlEndPoint, {
@@ -36,7 +36,7 @@ $(document).ready(function () {
 });
 
 function fetchStudent() {
-  fetch(`http://localhost:3009/students/find/${getCodigoFromURL()}`)
+  fetch(`http://localhost:3009/auth/tarefas/find/${getCodigoFromURL()}`)
     .then(function (response) {
       return response.json();
     })

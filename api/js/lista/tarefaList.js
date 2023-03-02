@@ -14,7 +14,7 @@ $(document).ready(function () {
 });
 
 const deleteTarefas = (codigo) => {
-  fetch(`http://localhost:3009/auth/delete/${codigo}`, {
+  fetch(`http://localhost:3009/auth/tarefas/delete/${codigo}`, {
     method: "DELETE",
   })
     .then((response) => {
@@ -27,7 +27,7 @@ const deleteTarefas = (codigo) => {
 };
 
 function fetchTarefasList(searchQuery = "") {
-  fetch(`http://localhost:3009/auth/tarefas/${searchQuery}`)
+  fetch(`http://localhost:3009/auth/tarefas/find/${searchQuery}`)
     .then((response) => {
       return response.json();
     })

@@ -13,7 +13,7 @@ $(document).ready(function () {
       let urlEndPoint;
   
         methodEndPoint = "POST";
-        urlEndPoint = "http://localhost:3009/auth/cadastro-users/save";
+        urlEndPoint = "http://localhost:3009/auth/users/save";
       
       console.log(urlEndPoint, methodEndPoint);
       fetch(urlEndPoint, {

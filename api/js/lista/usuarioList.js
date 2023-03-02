@@ -14,7 +14,7 @@ $(document).ready(function () {
 });
 
 const deleteUsers = (codigo) => {
-  fetch(`http://localhost:3009/auth/delete/${codigo}`, {
+  fetch(`http://localhost:3009/auth/users/delete/${codigo}`, {
     method: "DELETE",
   })
     .then((response) => {
@@ -27,7 +27,7 @@ const deleteUsers = (codigo) => {
 };
 
 function fetchUsersList(searchQuery = "") {
-  fetch(`http://localhost:3009/auth/users/${searchQuery}`)
+  fetch(`http://localhost:3009/auth/users/find/${searchQuery}`)
     .then((response) => {
       return response.json();
     })
