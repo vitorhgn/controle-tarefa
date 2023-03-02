@@ -11,7 +11,7 @@ export default function CadastroUsuario() {
             Cadastro de Usuários
         </header>
             <div className="content">
-                <form id="studentForm" className="form" method="post">
+                <form id="usersForm" className="form" method="post">
                     <div className="form-group1">
                         <label htmlFor="name">Nome</label>
                         <input required type="text" name="name" id="name"/>

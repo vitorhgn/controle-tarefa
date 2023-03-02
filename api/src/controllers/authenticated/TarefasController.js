@@ -1,9 +1,9 @@
-module.exports = class AuthCadastroTarefa {
+module.exports = class TarefasController {
   constructor(app) {
     this.app = app;
   }
 
-  listActionTarefa = (req, res) => {
+  listAction = (req, res) => {
     let query = this.app.db("tarefa");
 
     let search = req.params.searchQuery;
@@ -17,28 +17,41 @@ module.exports = class AuthCadastroTarefa {
     });
   };
 
-  findActionTarefa = (req, res) => {
+  findAction = (req, res) => {
+    const { codigo } = req.params
+    if (!codigo) {
+      return res
+        .status(400)
+        .send({ error: "O Código é um atributo obrigatório" });
+    }
     return this.app
       .db("tarefa")
       .select()
-      .where({ codigo: req.params.codigo })
+      .where({ codigo: codigo })
       .first()
       .then((response) => {
-        res.send(response);
+        if (response) {
+          return res.status(200).send(response);
+        } else {
+          return res.status(400).send({ error: "Tarefa não encontrada" });
+        }
       });
   };
 
-  isCreateDataValidTarefa = async (data) => {
-    if (data.nome == "") {
-      return "Preencha todos os campos antes de salvar!";
+  isCreateDataValid = (data) => {
+    if (data.nome === undefined || data.nome == "") {
+      return "Preencha o nome antes de salvar!";
     }
-    if (data.tipo == "") {
-      return `Preencha todos os campos antes de salvar!`;
+    if (data.tipo === undefined || data.tipo == "") {
+      return `Preencha o tipo antes de salvar!`;
+    }
+    if(!['D', 'M', 'S', 'Q'].includes(data.tipo)) {
+      return 'Desculpa, mas o tipo de tarefa informado é inválido!'
     }
     return true;
   };
-  createActionTarefa = async (req, res) => {
-    const isCreateDataValid = await this.isCreateDataValid(req.body);
+  createAction = async (req, res) => {
+    const isCreateDataValid = this.isCreateDataValid(req.body);
     if (isCreateDataValid != true) {
       return res.status(400).send({
         result: false,
@@ -65,21 +78,27 @@ module.exports = class AuthCadastroTarefa {
       });
   };
 
-  deleteActionTarefa = (req, res) => {
+  deleteAction = (req, res) => {
+    const { codigo } = req.params
+    if (!codigo) {
+      return res
+        .status(400)
+        .send({ error: "O Código é um atributo obrigatório" });
+    }
     return this.app
       .db("tarefa")
-      .where({ codigo: req.params.codigo })
+      .where({ codigo: codigo })
       .del()
       .then((response) => {
         if (response) {
           res.send({
             result: true,
-            message: `A tarefa #${req.params.codigo} foi excluída`,
+            message: `A tarefa #${codigo} foi excluída`,
           });
         } else {
           res.send({
             result: false,
-            message: `A tarefa #${req.params.codigo} não foi excluída`,
+            message: `A tarefa #${codigo} não foi encontrada no sistema`,
           });
         }
       });
