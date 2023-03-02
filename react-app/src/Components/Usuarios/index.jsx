@@ -2,9 +2,15 @@ import React from "react";
 import Nav from "../Shared/Layout";
 import "./style.css";
 
-export default function Usuarios() {
-  return (
-    <>
+class Usuario extends React.Component {
+  componentDidMount(){
+  }
+
+
+
+  render() {
+    return(
+      <>
       <Nav />
       <section className="container">
         <header className="main-header">Usuários</header>
@@ -38,5 +44,7 @@ export default function Usuarios() {
         </div>
       </section>
     </>
-  );
+    )
+  };
 }
+export default Usuario;
