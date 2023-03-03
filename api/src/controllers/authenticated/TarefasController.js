@@ -10,7 +10,8 @@ module.exports = class TarefasController {
     if (search) {
       query
         .where("codigo", "like", `%${search}%`)
-        .orWhere("nome", "like", `%${search}%`);
+        .orWhere("nome", "like", `%${search}%`)
+        .orWhere("tipo", "like", `${search}`);
     }
     return query.select().then((data) => {
       res.send(data);

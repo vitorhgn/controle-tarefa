@@ -46,3 +46,8 @@
     text-align: center;
     border: 1px solid gray;
 }
+.form-search{
+    display: flex;
+    gap: 50px;
+    height: 30px;
+}
