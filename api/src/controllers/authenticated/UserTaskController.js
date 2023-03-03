@@ -80,5 +80,31 @@ module.exports = class UserTaskController {
           }
         });
     };
+
+    deleteAction = (req, res) => {
+      const { codigo } = req.params
+      if (!codigo) {
+        return res
+          .status(400)
+          .send({ error: "O Código é um atributo obrigatório" });
+      }
+      return this.app
+        .db("usuario_tarefa")
+        .where({ codigo: codigo })
+        .del()
+        .then((response) => {
+          if (response) {
+            res.send({
+              result: true,
+              message: `A tarefa #${codigo} foi excluída do usuário`,
+            });
+          } else {
+            res.send({
+              result: false,
+              message: `A tarefa #${codigo} do usuário não foi encontrada no sistema`,
+            });
+          }
+        });
+    };
   };
   

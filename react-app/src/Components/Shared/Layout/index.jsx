@@ -12,6 +12,9 @@ export default function Nav() {
               <Link to='/users' className="nav-item">
                 <li>Usuários</li>
               </Link>
+              <Link to='/users-tarefas' className="nav-item">
+                <li>Usuário-Tarefa</li>
+              </Link>
               <Link to='/tarefas' className="nav-item">
                 <li>Tarefas</li>
               </Link>

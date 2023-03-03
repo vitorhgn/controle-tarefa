@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "../Shared/Layout";
+import Nav from "../../Shared/Layout";
 import "./style.css";
 import {Link} from 'react-router-dom';
 import Swal from 'sweetalert2' ;
@@ -10,7 +10,7 @@ class Usuario extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      usuariosList: [],
+      usuario_tarefaList: [],
         formSearch: {
             searchInput: "",
         },
@@ -23,7 +23,7 @@ componentDidMount(){
 
 onClickRemoveUser = (codigo) =>{
     Swal.fire({
-        title: 'Você realmente deseja excluír esse usuário?',
+        title: 'Você realmente deseja excluír essa tarefa do usuário?',
         showCancelButton: false,
         showDenyButton: true,
         denyButtonText: 'Cancelar',
@@ -36,7 +36,7 @@ onClickRemoveUser = (codigo) =>{
 }
 deleteUser = (codigo) =>{
     this.setState({isLoading:true});
-    fetch(`http://localhost:3009/admin/user/delete/${codigo}`, {
+    fetch(`http://localhost:3009/admin/user-task/delete/${codigo}`, {
         method: 'DELETE'
     }).then((response)=>{
         return response.json();
@@ -56,11 +56,11 @@ onSubmitFormSearch = (event)=>{
 
 fetchUsersList = (searchQuery = '') => {
     
-    fetch(`http://localhost:3009/admin/user/list/${searchQuery}`).then((response) => {
+    fetch(`http://localhost:3009/admin/user-task/list/${searchQuery}`).then((response) => {
         return response.json();
     })
     .then((data) =>{
-        this.setState({usuariosList: data, TarefasList: data});
+        this.setState({usuario_tarefaList: data, TarefasList: data});
 
     })
     .catch((error)=>{
@@ -78,28 +78,14 @@ fetchUsersList = (searchQuery = '') => {
       <>
       <Nav />
       <section className="container">
-        <header className="main-header">Usuários</header>
+        <header className="main-header">Tarefas dos Usuários</header>
         <div className="content">
           <div>
-            <h5>Usuários</h5>
+            <h5 className="taks-list">Lista dos usuários com suas tarefas</h5>
             <div className="search-tarefas">
-              <div>
-              <form onSubmit={this.onSubmitFormSearch} id="formSearchUsers" className="form-search" action="">
-                    <input type="text" name="searchInput" id="searchInput" value={this.state.formSearch.searchInput} onChange={(event)=>{
-                    this.setState({
-                        formSearch: {
-                            searchInput: event.target.value
-                        }
-                    })
-                    }}/>
-                    <button>Pesquisar</button>
-                </form>
-              </div>
+              <div></div>
               <Link className="btn btn-warning" to="/adicionar-tarefas">
                 Adicionar tarefa
-              </Link>
-              <Link className="btn btn-dark" to="/cadastro-users">
-                Cadastrar Usuários
               </Link>
             </div>
           </div>
@@ -108,21 +94,21 @@ fetchUsersList = (searchQuery = '') => {
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Nome do Usuário</th>
-                  <th>Cargo</th>
+                  <th>ID do Usuário</th>
+                  <th>ID da Tarefa</th>
                   <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
               {
-                    this.state.usuariosList.map((usuario) =>{
+                    this.state.usuario_tarefaList.map((usuario_tarefa) =>{
                         return(
-                            <tr key={usuario.codigo}>
-                    <td>{usuario.codigo}</td>
-                    <td>{usuario.nome}</td>
-                    <td>{usuario.direito}</td>
+                            <tr key={usuario_tarefa.codigo}>
+                    <td>{usuario_tarefa.codigo}</td>
+                    <td>{usuario_tarefa.cod_usuario}</td>
+                    <td>{usuario_tarefa.cod_tarefa}</td>
                     <td>
-                    <button className="removeTarefa action-link" onClick={()=>{this.onClickRemoveUser(usuario.codigo)}}>Excluir</button>
+                    <button className="removeTarefa action-link" onClick={()=>{this.onClickRemoveUser(usuario_tarefa.codigo)}}>Excluir</button>
                     </td>
                     </tr>
                 );

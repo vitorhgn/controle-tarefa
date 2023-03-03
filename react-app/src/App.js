@@ -5,6 +5,7 @@ import Tarefa from "./Components/Tarefa";
 import Login from "./Components/Login";
 import CadastroTarefa from "./Components/Tarefa/CadastroTarefa";
 import Usuarios from "./Components/Usuarios";
+import UsuarioTarefa from "./Components/Usuarios/UsuarioTarefa";
 import CadastroUsuario from "./Components/Usuarios/CadastrarUsuario";
 import AdicionarTarefas from "./Components/Usuarios/AdicionarTarefa";
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/cadastro-users" element={<CadastroUsuario/>}/>
         <Route path="/cadastro-tarefas" element={<CadastroTarefa/>}/>
         <Route path="/adicionar-tarefas" element={<AdicionarTarefas/>}/>
+        <Route path="/users-tarefas" element={<UsuarioTarefa/>}/>
       </Routes>
     </BrowserRouter>
   );
