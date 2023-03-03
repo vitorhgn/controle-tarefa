@@ -12,7 +12,7 @@ $(document).ready(function () {
     let urlEndPoint;
 
       methodEndPoint = "POST";
-      urlEndPoint = "http://localhost:3009/auth/tarefas/save";
+      urlEndPoint = "http://localhost:3009/auth/admin/tarefa/save";
     
     console.log(urlEndPoint, methodEndPoint);
     fetch(urlEndPoint, {
