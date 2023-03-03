@@ -1,50 +1,31 @@
 import React from "react";
 import "./style.css";
-import Nav from "./../Shared/Layout";
-import { useState, useEffect } from "react";
-import { Navigate, Link, useParams } from "react-router-dom";
+import Nav from "../../Shared/Layout";
+import { useState } from "react";
+import { Navigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function CadastroUsuario() {
-  const { codigo } = useParams();
 
   const [isRedirect, setIsRedirect] = useState(false);
 
-  const [nome, updateNome] = useState("");
-  const [direito, updateDireito] = useState("");
-  const [senha, updateSenha] = useState("");
+  const [cod_usuario, updateCod_usuario] = useState("");
+  const [cod_tarefa, updateCod_tarefa] = useState("");
 
-  const fetchStudent = () => {
-    fetch(`http://localhost:3009/admin/tarefa/find/${codigo}`)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        updateNome(data.nome);
-        updateDireito(data.direito);
-        updateSenha(data.senha);
-      });
-  };
-
-  useEffect(() => {
-    if (codigo) {
-      fetchStudent();
-    }
-  }, []);
 
   const onSubmitForm = (event) => {
     event.preventDefault();
     const body = {
-      nome,
-      direito,
-      senha,
+      cod_usuario,
+      cod_tarefa,
+
     };
 
     let methodEndPoint;
     let urlEndPoint;
 
     methodEndPoint = "POST";
-    urlEndPoint = "http://localhost:3009/admin/user/create";
+    urlEndPoint = "http://localhost:3009/admin/user-task/create";
 
     console.log(urlEndPoint, methodEndPoint);
     fetch(urlEndPoint, {
@@ -84,7 +65,7 @@ export default function CadastroUsuario() {
     <>
       <Nav />
       <section className="container">
-        <header className="main-header">Cadastro de Usuários</header>
+        <header className="main-header">Adicionar Tarefas</header>
         <div className="content">
           <form
             id="usersForm"
@@ -93,44 +74,36 @@ export default function CadastroUsuario() {
             onSubmit={onSubmitForm}
           >
             <div className="form-group1">
-              <label htmlFor="name">Nome</label>
-              <input
-                required
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Insira o nome do novo usuário"
-                onChange={(event) => {
-                  updateNome(event.target.value);
-                }}
-              />
-            </div>
-            <div className="form-group1">
-              <label htmlFor="direito">Função</label>
+              <label htmlFor="direito">ID do Usuario</label>
               <select
                 id="direito"
                 name="direito"
                 onChange={(event) => {
-                  updateDireito(event.target.value);
+                  updateCod_usuario(event.target.value);
                 }}
               >
                 <option value="">Selecione</option>
-                <option value="O">Operador</option>
-                <option value="S">Supervisor</option>
+                <option value="1">1</option>
+                <option value="1">1</option>
+                <option value="1">1</option>
+                <option value="1">1</option>
               </select>
             </div>
             <div className="form-group1">
-              <label htmlFor="password">Senha</label>
-              <input
-                required
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Insira uma senha"
+              <label htmlFor="situacao">ID da Tarefa</label>
+              <select
+                id="situacao"
+                name="situacao"
                 onChange={(event) => {
-                  updateSenha(event.target.value);
+                  updateCod_tarefa(event.target.value);
                 }}
-              />
+              >
+                <option value="">Selecione</option>
+                <option value="19">19</option>
+                <option value="19">19</option>
+                <option value="19">19</option>
+                <option value="19">19</option>
+              </select>
             </div>
             <div className="actions">
               <Link to="/users" className="btn btn-warning margin-right-10">
@@ -144,3 +117,4 @@ export default function CadastroUsuario() {
     </>
   );
 }
+ 

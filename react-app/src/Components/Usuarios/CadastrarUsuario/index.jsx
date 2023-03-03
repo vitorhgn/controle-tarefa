@@ -5,27 +5,28 @@ import { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function CadastroTarefa() {
-
+export default function CadastroUsuario() {
 
   const [isRedirect, setIsRedirect] = useState(false);
 
   const [nome, updateNome] = useState("");
-  const [tipo, updateTipo] = useState("");
+  const [direito, updateDireito] = useState("");
+  const [senha, updateSenha] = useState("");
 
 
   const onSubmitForm = (event) => {
     event.preventDefault();
     const body = {
       nome,
-      tipo,
+      direito,
+      senha,
     };
 
     let methodEndPoint;
     let urlEndPoint;
 
     methodEndPoint = "POST";
-    urlEndPoint = "http://localhost:3009/admin/tarefa/create";
+    urlEndPoint = "http://localhost:3009/admin/user/create";
 
     console.log(urlEndPoint, methodEndPoint);
     fetch(urlEndPoint, {
@@ -58,53 +59,65 @@ export default function CadastroTarefa() {
   };
 
   if (isRedirect) {
-    return <Navigate to="/tarefas" />;
+    return <Navigate to="/users" />;
   }
 
   return (
     <>
       <Nav />
       <section className="container">
-        <header className="main-header">Cadastro de Tarefas</header>
+        <header className="main-header">Cadastro de Usuários</header>
         <div className="content">
           <form
-            id="tarefaForm"
+            id="usersForm"
             className="form"
             method="post"
             onSubmit={onSubmitForm}
           >
             <div className="form-group1">
-              <label htmlFor="nome">Nome da Tarefa</label>
+              <label htmlFor="name">Nome</label>
               <input
                 required
                 type="text"
-                name="nome"
-                id="nome"
-                placeholder="Insira o nome da nova tarefa"
-                value={nome}
+                name="name"
+                id="name"
+                placeholder="Insira o nome do novo usuário"
                 onChange={(event) => {
                   updateNome(event.target.value);
                 }}
               />
             </div>
             <div className="form-group1">
-              <label htmlFor="situacao">Tipo</label>
+              <label htmlFor="direito">Função</label>
               <select
-                id="situacao"
-                name="situacao"
+                id="direito"
+                name="direito"
                 onChange={(event) => {
-                  updateTipo(event.target.value);
+                  updateDireito(event.target.value);
                 }}
               >
                 <option value="">Selecione</option>
-                <option value="D">Diaria</option>
-                <option value="S">Semanal</option>
-                <option value="Q">Quinzenal</option>
-                <option value="M">Mensal</option>
+                <option value="O">Operador</option>
+                <option value="S">Supervisor</option>
               </select>
             </div>
+            <div className="form-group1">
+              <label htmlFor="password">Senha</label>
+              <input
+                required
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Insira uma senha"
+                onChange={(event) => {
+                  updateSenha(event.target.value);
+                }}
+              />
+            </div>
             <div className="actions">
-              <Link to='/tarefas' className="btn btn-warning margin-right-10">Cancelar</Link>
+              <Link to="/users" className="btn btn-warning margin-right-10">
+                Cancelar
+              </Link>
               <button className="btn">Salvar</button>
             </div>
           </form>

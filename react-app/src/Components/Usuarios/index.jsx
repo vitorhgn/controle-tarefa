@@ -23,7 +23,7 @@ componentDidMount(){
 
 onClickRemoveUser = (codigo) =>{
     Swal.fire({
-        title: 'Você realmente deseja excluír essa tarefa?',
+        title: 'Você realmente deseja excluír esse usuário?',
         showCancelButton: false,
         showDenyButton: true,
         denyButtonText: 'Cancelar',
@@ -95,7 +95,7 @@ fetchUsersList = (searchQuery = '') => {
                     <button>Pesquisar</button>
                 </form>
               </div>
-              <Link className="btn btn-warning" to="/cadastro-users">
+              <Link className="btn btn-warning" to="/adicionar-tarefas">
                 Adicionar tarefa
               </Link>
               <Link className="btn btn-dark" to="/cadastro-users">
