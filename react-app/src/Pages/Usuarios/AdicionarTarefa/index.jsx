@@ -4,49 +4,50 @@ import Nav from "../../../Components/Nav";
 import { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import handleStorage from '../../../storage/storage';
 
 export default function CadastroUsuario() {
   const [isRedirect, setIsRedirect] = useState(false);
-
+  
   const [cod_usuario, updateCod_usuario] = useState("");
   const [cod_tarefa, updateCod_tarefa] = useState("");
-
+  
   const [users, setUsers] = useState([]);
   const [tasks, setTasks] = useState([]);
-
+  
   const fetchUsersAndTasksAvailable = () => {
     
     fetch(`http://localhost:3009/admin/user-task/tasks-and-users-available`).then((response) => {
-        return response.json();
+      return response.json();
     })
     .then((data) =>{
-        setUsers(data.users)
-        setTasks(data.tasksAvailable);
-
+      setUsers(data.users)
+      setTasks(data.tasksAvailable);
+      
     })
     .catch((error)=>{
-        Swal.fire({
+      Swal.fire({
             icon: 'error',
             Title: 'Erro',
             text: 'Desculpe, mas não foi possível estabelecer conexão com o servidor.'
-        })
+          })
         console.log(error);
-    })
-}
-
-  const onSubmitForm = (event) => {
-    event.preventDefault();
-    const body = {
-      cod_usuario,
+      })
+    }
+    
+    const onSubmitForm = (event) => {
+      event.preventDefault();
+      const body = {
+        cod_usuario,
       cod_tarefa,
     };
-
+    
     let methodEndPoint;
     let urlEndPoint;
-
+    
     methodEndPoint = "POST";
     urlEndPoint = "http://localhost:3009/admin/user-task/create";
-
+    
     console.log(urlEndPoint, methodEndPoint);
     fetch(urlEndPoint, {
       method: methodEndPoint,
@@ -56,9 +57,9 @@ export default function CadastroUsuario() {
         "Content-type": "application/json",
       },
     })
-      .then((response) => {
-        return response.json();
-      })
+    .then((response) => {
+      return response.json();
+    })
       .then((data) => {
         if (data.result) {
           Swal.fire({
@@ -75,11 +76,15 @@ export default function CadastroUsuario() {
           });
         }
       });
-  };
-
-  useEffect(()=>{
-    fetchUsersAndTasksAvailable();
-  })
+    };
+    
+    useEffect(()=>{
+      fetchUsersAndTasksAvailable();
+    })
+    const storage = handleStorage();
+    if(!storage.isSupervisor()){
+    return <Navigate to="/"/>;
+  }
 
   if (isRedirect) {
     return <Navigate to="/users-tarefas" />;

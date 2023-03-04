@@ -4,6 +4,7 @@ import Nav from "../../../Components/Nav";
 import { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import handleStorage from '../../../storage/storage';
 
 export default function CadastroTarefa() {
 
@@ -13,6 +14,10 @@ export default function CadastroTarefa() {
   const [nome, updateNome] = useState("");
   const [tipo, updateTipo] = useState("");
 
+  const storage = handleStorage();
+  if(!storage.isSupervisor()){
+  return <Navigate to="/"/>;
+}
 
   const onSubmitForm = (event) => {
     event.preventDefault();
