@@ -3,6 +3,9 @@
     width: 100%;
     display: flex;
     background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .section-login .container {
     display: flex;
