@@ -1,8 +1,8 @@
 import React from "react";
-import Nav from "../Shared/Layout";
+import Nav from "../../Components/Nav";
 import "./style.css";
-import {Link} from 'react-router-dom';
 import Swal from 'sweetalert2' ;
+import SupervisorButton from "../../Components/SupervisorButton";
 
 class Usuario extends React.Component {
 
@@ -95,12 +95,11 @@ fetchUsersList = (searchQuery = '') => {
                     <button>Pesquisar</button>
                 </form>
               </div>
-              <Link className="btn btn-warning" to="/adicionar-tarefas">
-                Adicionar tarefa
-              </Link>
-              <Link className="btn btn-dark" to="/cadastro-users">
-                Cadastrar Usuários
-              </Link>
+              <SupervisorButton
+                className={'btn-dark'}
+                to={'/cadastro-users'}
+                label={'Cadastrar Usuários'}
+              />
             </div>
           </div>
           <div>
@@ -122,7 +121,7 @@ fetchUsersList = (searchQuery = '') => {
                     <td>{usuario.nome}</td>
                     <td>{usuario.direito}</td>
                     <td>
-                    <button className="removeTarefa action-link" onClick={()=>{this.onClickRemoveUser(usuario.codigo)}}>Excluir</button>
+                    <SupervisorButton className="removeTarefa action-link" onClick={()=>{this.onClickRemoveUser(usuario.codigo)}} label="Excluir"/>
                     </td>
                     </tr>
                 );

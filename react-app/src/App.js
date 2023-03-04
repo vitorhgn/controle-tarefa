@@ -1,13 +1,13 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Tarefa from "./Components/Tarefa";
-import Login from "./Components/Login";
-import CadastroTarefa from "./Components/Tarefa/CadastroTarefa";
-import Usuarios from "./Components/Usuarios";
-import UsuarioTarefa from "./Components/Usuarios/UsuarioTarefa";
-import CadastroUsuario from "./Components/Usuarios/CadastrarUsuario";
-import AdicionarTarefas from "./Components/Usuarios/AdicionarTarefa";
+import Tarefa from "./Pages/Tarefa";
+import Login from "./Pages/Login";
+import CadastroTarefa from "./Pages/Tarefa/CadastroTarefa";
+import Usuarios from "./Pages/Usuarios";
+import UsuarioTarefa from "./Pages/Usuarios/UsuarioTarefa";
+import CadastroUsuario from "./Pages/Usuarios/CadastrarUsuario";
+import AdicionarTarefas from "./Pages/Usuarios/AdicionarTarefa";
 
 function App() {
   return (

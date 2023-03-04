@@ -1,28 +1,31 @@
 import React from "react";
 import "./style.css";
-import Nav from "../../Shared/Layout";
+import Nav from "../../../Components/Nav";
 import { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function CadastroUsuario() {
+export default function CadastroTarefa() {
+
+
   const [isRedirect, setIsRedirect] = useState(false);
 
-  const [cod_usuario, updateCod_usuario] = useState("");
-  const [cod_tarefa, updateCod_tarefa] = useState("");
+  const [nome, updateNome] = useState("");
+  const [tipo, updateTipo] = useState("");
+
 
   const onSubmitForm = (event) => {
     event.preventDefault();
     const body = {
-      cod_usuario,
-      cod_tarefa,
+      nome,
+      tipo,
     };
 
     let methodEndPoint;
     let urlEndPoint;
 
     methodEndPoint = "POST";
-    urlEndPoint = "http://localhost:3009/admin/user-task/create";
+    urlEndPoint = "http://localhost:3009/admin/tarefa/create";
 
     console.log(urlEndPoint, methodEndPoint);
     fetch(urlEndPoint, {
@@ -55,51 +58,53 @@ export default function CadastroUsuario() {
   };
 
   if (isRedirect) {
-    return <Navigate to="/users-tarefas" />;
+    return <Navigate to="/tarefas" />;
   }
 
   return (
     <>
       <Nav />
       <section className="container">
-        <header className="main-header">Adicionar Tarefas</header>
+        <header className="main-header">Cadastro de Tarefas</header>
         <div className="content">
           <form
-            id="usersForm"
+            id="tarefaForm"
             className="form"
             method="post"
             onSubmit={onSubmitForm}
           >
             <div className="form-group1">
-              <label htmlFor="name">ID do Usuário</label>
+              <label htmlFor="nome">Nome da Tarefa</label>
               <input
                 required
                 type="text"
-                name="idUser"
-                id="idUser"
-                placeholder="O ID pode ser visualizado na aba 'Usuários'"
+                name="nome"
+                id="nome"
+                placeholder="Insira o nome da nova tarefa"
+                value={nome}
                 onChange={(event) => {
-                  updateCod_usuario(event.target.value);
+                  updateNome(event.target.value);
                 }}
               />
             </div>
             <div className="form-group1">
-              <label htmlFor="name">ID da Tarefa</label>
-              <input
-                required
-                type="text"
-                name="idTask"
-                id="idTaskr"
-                placeholder="O ID pode ser visualizado na aba 'Tarefas'"
+              <label htmlFor="situacao">Tipo</label>
+              <select
+                id="situacao"
+                name="situacao"
                 onChange={(event) => {
-                  updateCod_tarefa(event.target.value);
+                  updateTipo(event.target.value);
                 }}
-              />
+              >
+                <option value="">Selecione</option>
+                <option value="D">Diaria</option>
+                <option value="S">Semanal</option>
+                <option value="Q">Quinzenal</option>
+                <option value="M">Mensal</option>
+              </select>
             </div>
             <div className="actions">
-              <Link to="/users" className="btn btn-warning margin-right-10">
-                Cancelar
-              </Link>
+              <Link to='/tarefas' className="btn btn-warning margin-right-10">Cancelar</Link>
               <button className="btn">Salvar</button>
             </div>
           </form>

@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import handleStorage from "../../storage/storage";
 
 export default function Nav() {
+  const storage = handleStorage();
   return (
      <nav className="main-nav">
         <header>
@@ -20,7 +22,7 @@ export default function Nav() {
               </Link>
             </div>
             <div>
-              <Link to='/' className="nav-item">
+              <Link onClick={()=>storage.clear()} to='/' className="nav-item">
                 <li>Logout</li>
               </Link>
             </div>

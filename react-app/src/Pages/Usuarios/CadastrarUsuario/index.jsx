@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import Nav from "../../Shared/Layout";
+import Nav from "../../../Components/Nav";
 import { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";

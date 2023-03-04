@@ -1,8 +1,8 @@
 import React from "react";
-import Nav from "../../Shared/Layout";
+import Nav from "../../../Components/Nav";
 import "./style.css";
-import {Link} from 'react-router-dom';
 import Swal from 'sweetalert2' ;
+import SupervisorButton from "../../../Components/SupervisorButton";
 
 class Usuario extends React.Component {
 
@@ -81,12 +81,14 @@ fetchUsersList = (searchQuery = '') => {
         <header className="main-header">Tarefas dos Usuários</header>
         <div className="content">
           <div>
-            <h5 className="taks-list">Lista dos usuários com suas tarefas</h5>
+            <h5 className="taks-list">Lista dos usuários com suas respectivas tarefas</h5>
             <div className="search-tarefas">
               <div></div>
-              <Link className="btn btn-warning" to="/adicionar-tarefas">
-                Adicionar tarefa
-              </Link>
+              <SupervisorButton
+                className={'btn-dark'}
+                to={'/adicionar-tarefas'}
+                label={'Adicionar tarefa'}
+              />
             </div>
           </div>
           <div>
@@ -96,6 +98,7 @@ fetchUsersList = (searchQuery = '') => {
                   <th>ID</th>
                   <th>ID do Usuário</th>
                   <th>ID da Tarefa</th>
+                  <th>Tipo da Tarefa</th>
                   <th>Ações</th>
                 </tr>
               </thead>
@@ -105,10 +108,11 @@ fetchUsersList = (searchQuery = '') => {
                         return(
                             <tr key={usuario_tarefa.codigo}>
                     <td>{usuario_tarefa.codigo}</td>
-                    <td>{usuario_tarefa.cod_usuario}</td>
-                    <td>{usuario_tarefa.cod_tarefa}</td>
+                    <td>{usuario_tarefa.user_name}</td>
+                    <td>{usuario_tarefa.task_name}</td>
+                    <td>{usuario_tarefa.task_type}</td>
                     <td>
-                    <button className="removeTarefa action-link" onClick={()=>{this.onClickRemoveUser(usuario_tarefa.codigo)}}>Excluir</button>
+                    <SupervisorButton className="removeTarefa action-link" onClick={()=>{this.onClickRemoveUser(usuario_tarefa.codigo)}} label="Excluir"></SupervisorButton>
                     </td>
                     </tr>
                 );

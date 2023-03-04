@@ -10,6 +10,8 @@ module.exports = (app) => {
     router.delete("/delete/:codigo", controller.deleteAction);
     router.post("/create", controller.createAction);
     router.get("/list/:searchQuery?", controller.listAction);
+    router.get("/tasks-and-users-available", controller.tasksAndUsersAvailable);
+    
 
   return router;
 };

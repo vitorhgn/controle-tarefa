@@ -1,8 +1,8 @@
 import React from "react";
-import Nav from "../Shared/Layout";
+import Nav from "../../Components/Nav";
 import "./style.css";
-import {Link} from 'react-router-dom';
 import Swal from 'sweetalert2' ;
+import SupervisorButton from "../../Components/SupervisorButton";
 
 class Tarefa extends React.Component{
 
@@ -95,7 +95,11 @@ fetchTarefasList = (searchQuery = '') => {
                     <button>Pesquisar</button>
                 </form>
                 </div>
-                <Link className="btn btn-dark" to="/cadastro-tarefas">Cadastrar Tarefas</Link>
+                <SupervisorButton
+                  className={'btn-dark'}
+                  to={'/cadastro-tarefas'}
+                  label={'Cadastrar Tarefas'}
+                />
               </div>
             </div>
             <div>
@@ -117,7 +121,7 @@ fetchTarefasList = (searchQuery = '') => {
                     <td>{tarefa.nome}</td>
                     <td>{tarefa.tipo}</td>
                     <td>
-                    <button className="removeTarefa action-link" onClick={()=>{this.onClickRemoveTarefa(tarefa.codigo)}}>Excluir</button>
+                    <SupervisorButton className="removeTarefa action-link" onClick={()=>{this.onClickRemoveTarefa(tarefa.codigo)}} label="Excluir"></SupervisorButton>
                     </td>
                     </tr>
                 );
