@@ -1,6 +1,5 @@
 import React from "react";
 import Nav from "../../../Components/Nav";
-import "./style.css";
 import Swal from 'sweetalert2' ;
 import SupervisorButton from "../../../Components/SupervisorButton";
 

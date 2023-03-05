@@ -1,6 +1,5 @@
 import React from "react";
 import Nav from "../../Components/Nav";
-import "./style.css";
 import Swal from 'sweetalert2' ;
 import SupervisorButton from "../../Components/SupervisorButton";
 
@@ -83,7 +82,7 @@ fetchTarefasList = (searchQuery = '') => {
             <div>
               <h5>Tarefas</h5>
               <div className="search-tarefas">
-                <div>
+                <div className="form-search-task">
                 <form onSubmit={this.onSubmitFormSearch} id="formSearchTarefa" className="form-search" action="">
                     <input type="text" name="searchInput" id="searchInput" value={this.state.formSearch.searchInput} onChange={(event)=>{
                     this.setState({

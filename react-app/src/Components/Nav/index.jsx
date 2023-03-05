@@ -21,7 +21,7 @@ export default function Nav() {
                 <li>Tarefas</li>
               </Link>
             </div>
-            <div>
+            <div className="logout">
               <Link onClick={()=>storage.clear()} to='/' className="nav-item">
                 <li>Logout</li>
               </Link>

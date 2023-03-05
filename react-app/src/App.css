@@ -24,7 +24,7 @@
     border-color: #ffc107;
 }
 .main-nav {
-    background-color: gray;
+    background-color: RGBA(33,37,41,var(--bs-bg-opacity,1))!important;
     width: 250px;
     height: 100vh;
 }
@@ -39,8 +39,7 @@
 }
 .main-nav .nav-links{
     list-style: none;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -50,12 +49,17 @@
     text-decoration: none;
     color: white;
     padding: 5px;
-    border-radius: 10px;
     display: block;
 }
+.main-nav .nav-links li{
+    padding-left: 15px;
+}
 .main-nav .nav-links a.nav-item:hover{
+    transition: 0.4s;
     background-color: #0d6efd;
-    display: block;
+}
+.logout{
+    border-top: 1px solid black;
 }
 
 /* NAV MENU END */
@@ -63,12 +67,111 @@
     width: 100%;
 }
 .container .main-header {
-    background-color: #21252980;
+    background-color: RGBA(33,37,41,var(--bs-bg-opacity,1))!important;
+    color: white;
     width: 100%;
-    height: 40px;
+    height: 67px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
     font-size: 16px;
+}
+
+
+/* TABLE INIT */
+.content .table-list tbody tr:nth-child(even){
+    background-color: #ccc;
+}
+
+.content .table-list {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid #dee2e6;
+}
+.content .table-list thead{
+    height: 50px;
+    background-color: RGBA(33,37,41,var(--bs-bg-opacity,1))!important;
+    color: white;
+}
+.content .table-list tbody tr{
+    height: 40px;
+}
+.content .table-list tbody tr:nth-child(even){
+    background-color: #ccc;
+}
+.content{
+    padding: 50px 50px;
+}
+.search-tarefas{
+    display: flex;
+    justify-content: space-between;
+}
+.buscar-tarefas{
+    display: flex;
+    gap: 50px;
+}
+.table-list{
+    width: 100%;
+    background-color: #fff;
+    padding-top: 15px;
+    border: 1px solid gray;
+}
+.table-list th, td{
+    border: 1px solid gray;
+}
+.form-search{
+    display: flex;
+    gap: 40px;
+}
+.form-search-task{
+    display: flex;
+    align-items: center;
+}
+.taks-list{
+    text-align: center;
+}
+.removeTarefa{
+    display: contents;
+    color: black;
+    padding: 0;
+    text-decoration: underline !important;
+}
+
+/* TABLE END */
+
+.form {
+    max-width: 700px;
+    padding: 50px 50px;
+}
+.form-group1 {
+    margin-top: 15px;
+    border: 1px solid gray;
+    height: 40px;
+    display: flex;
+}
+.form-group1 label {
+    width: 150px;
+    align-items: center;
+    display: flex;
+    padding-left: 20px;
+    background-color: #ccc;
+}
+.form-group1 input {
+    width: 100%;
+    border: 0px;
+    border-left: 1px solid gray;
+}
+.form-group1 select{
+    width: 100%;
+    border: none;
+    border-left: 1px solid gray;
+}
+.form .actions{
+    margin-top: 20px;
+    display: flex;
+    justify-content: right;
+    gap: 15px;
 }
