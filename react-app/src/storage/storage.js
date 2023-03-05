@@ -25,6 +25,13 @@ export default function handleStorage() {
         }
         return user.direito === 'S';
     }
+    const isOperadorOrSupervisor= () => {
+        const user = get();
+        if(!user){
+            return false;
+        }
+        return user.direito === 'O' || 'S';
+    }
 
     const clear = () => {
         localStorage.setItem(STORAGE_KEY, '');
@@ -34,7 +41,8 @@ export default function handleStorage() {
         save,
         get,
         clear,
-        isSupervisor
+        isSupervisor,
+        isOperadorOrSupervisor
     }
 
 }

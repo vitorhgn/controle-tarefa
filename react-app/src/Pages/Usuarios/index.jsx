@@ -1,6 +1,8 @@
 import React from "react";
 import Nav from "../../Components/Nav";
 import Swal from 'sweetalert2' ;
+import { Navigate } from "react-router-dom";
+import handleStorage from '../../storage/storage';
 import SupervisorButton from "../../Components/SupervisorButton";
 import SupervisorTh from "../../Components/SupervisorTh";
 
@@ -74,6 +76,9 @@ fetchUsersList = (searchQuery = '') => {
 }
 
   render() {
+    if(!handleStorage().isOperadorOrSupervisor()){
+      return <Navigate to="/"/>;
+      }else
     return(
       <>
       <Nav />

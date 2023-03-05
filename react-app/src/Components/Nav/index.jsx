@@ -11,14 +11,14 @@ export default function Nav() {
         </header>
         <ul className="nav-links">
             <div>
-              <Link to='/users' className="nav-item">
-                <li>Usuários</li>
-              </Link>
               <Link to='/users-tarefas' className="nav-item">
-                <li>Usuário-Tarefa</li>
+                <li>Lista de tarefas</li>
+              </Link>
+              <Link to='/users' className="nav-item">
+                <li>Todos os usuários</li>
               </Link>
               <Link to='/tarefas' className="nav-item">
-                <li>Tarefas</li>
+                <li>Todas as tarefas</li>
               </Link>
             </div>
             <div className="logout">

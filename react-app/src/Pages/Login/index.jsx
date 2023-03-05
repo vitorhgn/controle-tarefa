@@ -39,7 +39,7 @@ export default function Login() {
   console.log(isUserLogged);
   return (
     <>
-    {isUserLogged === true && <Navigate to={"/users"} />}
+    {isUserLogged === true && <Navigate to={"/users-tarefas"} />}
     {isUserLogged === false && (
       <section className="section-login">
         <Formik className="container" initialValues={{

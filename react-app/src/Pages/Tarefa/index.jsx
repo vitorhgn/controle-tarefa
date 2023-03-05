@@ -1,6 +1,8 @@
 import React from "react";
 import Nav from "../../Components/Nav";
 import Swal from 'sweetalert2' ;
+import { Navigate } from "react-router-dom";
+import handleStorage from '../../storage/storage';
 import SupervisorButton from "../../Components/SupervisorButton";
 import SupervisorTh from "../../Components/SupervisorTh";
 
@@ -17,22 +19,24 @@ class Tarefa extends React.Component{
 }
 
 componentDidMount(){
-    this.fetchTarefasList();
+  this.fetchTarefasList();
 }
 
+
 onClickRemoveTarefa = (codigo) =>{
-    Swal.fire({
-        title: 'Você realmente deseja excluír essa tarefa?',
-        showCancelButton: false,
-        showDenyButton: true,
-        denyButtonText: 'Cancelar',
-        confirmButtonText: 'Excluír'
-    }).then((result) => {
-        if (result.isConfirmed) {
-          this.deleteTarefa(codigo);
-        }
-      });
+  Swal.fire({
+    title: 'Você realmente deseja excluír essa tarefa?',
+    showCancelButton: false,
+    showDenyButton: true,
+    denyButtonText: 'Cancelar',
+    confirmButtonText: 'Excluír'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.deleteTarefa(codigo);
+    }
+  });
 }
+
 deleteTarefa = (codigo) =>{
     this.setState({isLoading:true});
     fetch(`http://localhost:3009/admin/tarefa/delete/${codigo}`, {
@@ -74,6 +78,9 @@ fetchTarefasList = (searchQuery = '') => {
 
 
   render() {
+    if(!handleStorage().isOperadorOrSupervisor()){
+      return <Navigate to="/"/>;
+      }else
    return(
     <>
     <Nav/>
