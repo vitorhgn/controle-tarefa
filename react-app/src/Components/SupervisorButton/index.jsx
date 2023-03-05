@@ -7,8 +7,10 @@ export default function SupervisorButton ({to, className, label, onClick}) {
     return <></>;
    }
    return( 
+    <td>
         <Link onClick={onClick} className={`btn ${className}`} to={to}>
             {label}
         </Link>
+    </td>
     )
 }

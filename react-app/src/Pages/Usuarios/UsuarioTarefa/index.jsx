@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "../../../Components/Nav";
 import Swal from 'sweetalert2' ;
 import SupervisorButton from "../../../Components/SupervisorButton";
+import SupervisorTh from "../../../Components/SupervisorTh";
 
 class Usuario extends React.Component {
 
@@ -98,7 +99,7 @@ fetchUsersList = (searchQuery = '') => {
                   <th>ID do Usuário</th>
                   <th>ID da Tarefa</th>
                   <th>Tipo da Tarefa</th>
-                  <th>Ações</th>
+                  <SupervisorTh label="Ações" />
                 </tr>
               </thead>
               <tbody>
@@ -110,9 +111,7 @@ fetchUsersList = (searchQuery = '') => {
                     <td>{usuario_tarefa.user_name}</td>
                     <td>{usuario_tarefa.task_name}</td>
                     <td>{usuario_tarefa.task_type}</td>
-                    <td>
                     <SupervisorButton className="removeTarefa action-link" onClick={()=>{this.onClickRemoveUser(usuario_tarefa.codigo)}} label="Excluir"></SupervisorButton>
-                    </td>
                     </tr>
                 );
             })

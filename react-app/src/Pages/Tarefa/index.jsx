@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "../../Components/Nav";
 import Swal from 'sweetalert2' ;
 import SupervisorButton from "../../Components/SupervisorButton";
+import SupervisorTh from "../../Components/SupervisorTh";
 
 class Tarefa extends React.Component{
 
@@ -108,7 +109,7 @@ fetchTarefasList = (searchQuery = '') => {
                     <th>ID</th>
                     <th>Nome da Tarefa</th>
                     <th>Tipo Tarefa</th>
-                    <th>Ações</th>
+                    <SupervisorTh label="Ações" />
                   </tr>
                 </thead>
                 <tbody>
@@ -119,9 +120,7 @@ fetchTarefasList = (searchQuery = '') => {
                     <td>{tarefa.codigo}</td>
                     <td>{tarefa.nome}</td>
                     <td>{tarefa.tipo}</td>
-                    <td>
                     <SupervisorButton className="removeTarefa action-link" onClick={()=>{this.onClickRemoveTarefa(tarefa.codigo)}} label="Excluir"></SupervisorButton>
-                    </td>
                     </tr>
                 );
             })
